@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironyard — Strength & Conditioning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16140F;
+    --stone: #EDEAE3;
+    --stone-dim: #E2DDD1;
+    --iron: #4A4842;
+    --iron-light: #7A776E;
+    --ember: #C1440E;
+    --ember-deep: #9C3609;
+    --line: rgba(22, 20, 15, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--stone);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .display {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* NAV */
+  nav {
+    padding: 26px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 34px;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .nav-links a { opacity: 0.7; transition: opacity 0.2s ease; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--stone);
+    padding: 11px 24px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* HERO */
+  .hero { padding: 90px 0 0; }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .hero h1 {
+    font-size: 74px;
+    line-height: 0.95;
+    max-width: 620px;
+  }
+  .hero .lede {
+    margin-top: 24px;
+    font-size: 17px;
+    max-width: 420px;
+    color: var(--iron);
+  }
+  .hero-actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+  }
+  .btn-primary {
+    background: var(--ember);
+    color: var(--stone);
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+  }
+  .btn-primary:hover { background: var(--ember-deep); }
+  .btn-text {
+    align-self: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2px;
+  }
+
+  .hero-stat {
+    text-align: right;
+    padding-top: 8px;
+  }
+  .hero-stat .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 130px;
+    line-height: 0.85;
+    color: var(--ember);
+  }
+  .hero-stat .cap {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--iron);
+    margin-top: 8px;
+  }
+
+  /* STRIP */
+  .strip {
+    margin-top: 70px;
+    background: var(--ink);
+    color: var(--stone);
+    padding: 20px 0;
+  }
+  .strip .wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* SECTIONS */
+  .section { padding: 88px 0; }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+    align-items: end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+  }
+  .section-head h2 {
+    font-size: 42px;
+  }
+  .section-head p {
+    color: var(--iron);
+    font-size: 15.5px;
+    max-width: 380px;
+  }
+
+  /* PROGRAMS */
+  .program-list { }
+  .program-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 24px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .program-item .idx {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    color: var(--iron-light);
+  }
+  .program-item .name {
+    font-size: 21px;
+    font-weight: 700;
+  }
+  .program-item .desc {
+    font-size: 14.5px;
+    color: var(--iron);
+    margin-top: 4px;
+    max-width: 480px;
+  }
+  .program-item .meta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ember-deep);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* TRAINERS - dark reversed */
+  .coach {
+    background: var(--ink);
+    color: var(--stone);
+  }
+  .coach .wrap {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .coach h2 {
+    font-size: 38px;
+    line-height: 1.15;
+  }
+  .coach p {
+    margin-top: 20px;
+    font-size: 15.5px;
+    opacity: 0.8;
+    max-width: 440px;
+  }
+  .coach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(237,234,227,0.15);
+  }
+  .coach-card {
+    background: var(--ink);
+    padding: 28px 24px;
+  }
+  .coach-card .name {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+  }
+  .coach-card .role {
+    font-size: 13px;
+    color: var(--ember);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .coach-card .bio {
+    font-size: 13.5px;
+    opacity: 0.7;
+    margin-top: 10px;
+  }
+
+  /* MEMBERSHIP */
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--ink);
+    border-left: 2px solid var(--ink);
+  }
+  .plan {
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 32px 28px;
+  }
+  .plan.featured { background: var(--ink); color: var(--stone); }
+  .plan .tier {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+  }
+  .plan .price {
+    margin-top: 14px;
+    font-size: 34px;
+    font-weight: 700;
+  }
+  .plan .price span { font-size: 15px; font-weight: 500; opacity: 0.6; }
+  .plan ul {
+    margin-top: 20px;
+    list-style: none;
+    font-size: 14px;
+  }
+  .plan li {
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+  }
+  .plan.featured li { border-top: 1px solid rgba(237,234,227,0.15); }
+  .plan .pick {
+    display: block;
+    margin-top: 24px;
+    background: var(--ember);
+    color: var(--stone);
+    text-align: center;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .plan:not(.featured) .pick {
+    background: var(--ink);
+  }
+
+  /* VISIT */
+  .visit .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+  .visit-block h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+  .visit-block p, .visit-block a.line {
+    font-size: 15px;
+    color: var(--iron);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 30px 0;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: var(--iron);
+  }
+
+  @media (max-width: 760px) {
+    .hero .wrap, .section-head, .coach .wrap, .visit .wrap {
+      grid-template-columns: 1fr;
+    }
+    .hero h1 { font-size: 46px; }
+    .hero-stat { text-align: left; }
+    .hero-stat .num { font-size: 90px; }
+    .plans { grid-template-columns: 1fr; }
+    .coach-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .section { padding: 56px 0; }
+    .hero { padding: 56px 0 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Ironyard</div>
+    <div class="nav-links">
+      <a href="#programs">Programs</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#plans">Membership</a>
+    </div>
+    <a href="#plans" class="nav-cta">Join now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1 class="display">Train like the work actually matters.</h1>
+      <p class="lede">Strength and conditioning for people who want results, not ambiance. No mirrors, no fluff — just a program that works.</p>
+      <div class="hero-actions">
+        <a href="#plans" class="btn-primary">Book a free session</a>
+        <a href="#programs" class="btn-text">See programs</a>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">312</div>
+      <div class="cap">members currently training</div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>Open 5am – 11pm daily</span>
+    <span>Certified coaches on floor at all times</span>
+    <span>No contracts, cancel anytime</span>
+  </div>
+</div>
+
+<section class="section" id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">The programs</h2>
+      <p>Three ways to train here. Pick one or mix all three — most members do.</p>
+    </div>
+    <div class="program-list">
+      <div class="program-item">
+        <div class="idx display">01</div>
+        <div>
+          <div class="name">Strength Block</div>
+          <div class="desc">Squat, bench, deadlift progressions built around your current numbers. Coached, not just written on a board.</div>
+        </div>
+        <div class="meta">60 min · 3x/week</div>
+      </div>
+      <div class="program-item">
+        <div class="idx display">02</div>
+        <div>
+          <div class="name">Conditioning</div>
+          <div class="desc">Short, brutal, effective. Built for people who hate cardio but need it anyway.</div>
+        </div>
+        <div class="meta">45 min · 2x/week</div>
+      </div>
+      <div class="program-item">
+        <div class="idx display">03</div>
+        <div>
+          <div class="name">Open Gym</div>
+          <div class="desc">Full access to the floor, run your own session, coaches available if you want them.</div>
+        </div>
+        <div class="meta">Any time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="coach" id="coaches">
+  <div class="wrap">
+    <div>
+      <h2 class="display">Coached by people who still lift.</h2>
+      <p>Every coach here trains at Ironyard themselves. You're not getting theory from someone who hasn't touched a bar in years.</p>
+    </div>
+    <div class="coach-grid">
+      <div class="coach-card">
+        <div class="name">Marcus Webb</div>
+        <div class="role">Head Coach, Strength</div>
+        <div class="bio">12 years coaching, former competitive powerlifter.</div>
+      </div>
+      <div class="coach-card">
+        <div class="name">Dana Ruiz</div>
+        <div class="role">Conditioning Lead</div>
+        <div class="bio">Former college athlete, specializes in metabolic work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plans">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">Membership</h2>
+      <p>Straightforward pricing. No hidden fees, no annual lock-in.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="tier display">Drop-in</div>
+        <div class="price">$18 <span>/ session</span></div>
+        <ul>
+          <li>Full floor access</li>
+          <li>No commitment</li>
+        </ul>
+        <a href="#" class="pick">Choose</a>
+      </div>
+      <div class="plan featured">
+        <div class="tier display">Standard</div>
+        <div class="price">$89 <span>/ month</span></div>
+        <ul>
+          <li>Unlimited open gym</li>
+          <li>2 coached programs</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#" class="pick">Choose</a>
+      </div>
+      <div class="plan">
+        <div class="tier display">Full Coach</div>
+        <div class="price">$149 <span>/ month</span></div>
+        <ul>
+          <li>Everything in Standard</li>
+          <li>All 3 programs</li>
+          <li>Monthly check-in</li>
+        </ul>
+        <a href="#" class="pick">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section visit">
+  <div class="wrap">
+    <div class="visit-block">
+      <h3 class="display">Hours</h3>
+      <p>Mon – Fri &nbsp; 5:00am – 11:00pm</p>
+      <p>Sat – Sun &nbsp; 7:00am – 6:00pm</p>
+    </div>
+    <div class="visit-block">
+      <h3 class="display">Find us</h3>
+      <p>88 Foundry Road, Unit 4</p>
+      <a class="line" href="#">Get directions</a>
+      <a class="line" href="#">(555) 042-7710</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Ironyard</span>
+    <span>88 Foundry Road</span>
+  </div>
+</footer>
+
+</body>
+</html>
